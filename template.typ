@@ -7,27 +7,39 @@
 #let project(body) = {
   set page(
     margin: (left: 10mm, right: 10mm, top: 10mm, bottom: 10mm),
+    footer: context {
+      let page_number = counter(page).display()
+      let total_pages = counter(page).final().at(0)
+
+      set text(size: 8pt, fill: gray)
+      align(center)[
+        #page_number / #total_pages
+      ]
+    },
   )
   set text(
-    font: "Inter", 
-    size: 10pt, 
-    lang: "en"
+    font: "Inter",
+    lang: "en",
+    fill: rgb("#160044"),
   )
+
+
   set par(justify: true, leading: 0.6em)
+  show link: set text(fill: rgb("#4b52fb"))
   body
 }
 
 /// Creates a major category header (e.g., Work Experience).
 /// Includes a signature burgundy horizontal line for visual separation.
 #let section(title) = {
-  v(1em, weak: true)
+  v(1.6em, weak: true)
   block(width: 100%)[
-    #set text(weight: "bold", size: 11pt)
+    #set text(weight: "bold", size: 14pt)
     #stack(
-      spacing: 0.35em,
+      spacing: 0.4em,
       title,
       // Stroke color #802020 (Burgundy) provides a premium professional accent.
-      line(length: 100%, stroke: 0.7pt + rgb("#802020"))
+      line(length: 100%, stroke: 0.8pt + rgb("#fc738e")),
     )
   ]
 }
@@ -42,17 +54,18 @@
   sub_title: "",
   date: "",
   location: "",
-  description: []
+  description: [],
 ) = {
   pad(bottom: 0.6em)[
     #grid(
       columns: (1fr, auto),
-      row-gutter: 0.45em, // Space between title and sub-title
+      row-gutter: 0.45em,
+      // Space between title and sub-title
       [*#title*], [#text(weight: "regular")[#date]],
-      [#emph(sub_title)], [#text(style: "italic", size: 9pt)[#location]]
+      [#emph(sub_title)], [#text(style: "italic", size: 11pt)[#location]],
     )
     #v(0.1em)
-    #text(size: 9.5pt)[#description]
+    #text(size: 11pt)[#description]
   ]
 }
 
@@ -61,13 +74,15 @@
 #let project_entry(
   title: "",
   category: "",
-  description: []
+  description: [],
 ) = {
   pad(bottom: 0.6em)[
     *#title* \
     #v(-0.45em) // Tightens the gap significantly for an ultra-clean look.
     #emph(text(size: 9pt)[#category]) \
     #v(-0.2em)  // Tightens gap between category and the bullet points.
-    #text(size: 9.5pt)[#description]
+    #text(size: 11pt)[#description]
   ]
 }
+
+
