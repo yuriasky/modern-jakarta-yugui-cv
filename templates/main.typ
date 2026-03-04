@@ -5,11 +5,11 @@
 
 // --- HEADER SECTION ---
 // Centered name with clickable professional links.
-#align(center)[
+#align(left)[
   #text(18pt, weight: "bold")[Yuriaski Leyva Clemente] \
   #v(0.1em)
   #text(size: 9pt)[
-    yuriaskileyva\@email.com |
+    #link("mailto:yuriaskileyva@email.com") |
     #link("https://www.linkedin.com/in/yuriasky/")[linkedin.com/in/yuriasky/] |
     #link("https://yugui.design")[Portfolio]
   ]
